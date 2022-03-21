@@ -1,0 +1,101 @@
+﻿@using System.Globalization
+@using SimpleBookingWidget.Commons
+@using SimpleBookingWidget.Commons.Extension
+@model SimpleBookingWidget.Core.Models.PaxModel
+
+@{
+    var genderList = Enum.GetValues(typeof(Gender)).Cast<Gender>()
+        .Select(_ => new SelectListItem
+        {
+            Value = ((int)_).ToString(),
+            Text = _.GetDescription()
+        });
+
+    var countryList = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+        .Select(_ => new SelectListItem { Value = _.ThreeLetterISOLanguageName, Text = _.EnglishName });
+    ViewData["Title"] = "Profile";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/lib/intl-tel-input/intlTelInput.css" />
+    <style>
+        .form-group > .iti {
+            display: block;
+            width: 100%;
+            height: calc(1.5em + 0.75rem + 2px);
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+    </style>
+}
+
+<h1>Your Profile</h1>
+
+<h4>Let us know about you.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="create-pax" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="First" class="control-label"></label>
+                <input asp-for="First" class="form-control" required />
+                <span asp-validation-for="First" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Last" class="control-label"></label>
+                <input asp-for="Last" class="form-control" required />
+                <span asp-validation-for="Last" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input id="mobile-phone" asp-for="Mobile" class="form-control" required />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <textarea asp-for="Notes" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <select asp-for="Gender" asp-items="@(new SelectList(genderList, "Value", "Text"))" class="form-control">
+                    <option value="null">Please select..</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <textarea asp-for="Address" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <select asp-for="Country" asp-items="@(new SelectList(countryList, "Value", "Text"))" class="form-control">
+                    <option value="null">Please select..</option>
+                </select>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/lib/intl-tel-input/intlTelInput.js"></script>
+    <script type="text/javascript" src="~/js/modules/pax/pax-index.js" asp-append-version="true"></script>
+}

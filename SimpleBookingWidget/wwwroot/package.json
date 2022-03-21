@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "intl-tel-input": "^17.0.15",
+    "sweetalert2": "^11.4.6"
+  }
+}

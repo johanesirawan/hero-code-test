@@ -1,0 +1,105 @@
+﻿@using SimpleBookingWidget.Commons.Extension
+@inject SimpleBookingWidget.Sessions.IMySession _session
+@model SimpleBookingWidget.Core.Models.BookingModel
+
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (_session.HasBooking)
+{
+    <div class="card border-info">
+        <div class="card-header d-flex">
+            <h3 class="mb-0">Shopping Cart</h3>
+            <div class="badge badge-info ml-auto align-self-end"><h4 class="mb-0">@Model.Status.GetDescription()</h4></div>
+        </div>
+        <div class="card-body">
+            <p class="card-title text-muted">List of your bookings order..</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            @foreach (var product in Model.BookingProducts)
+            {
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-4">Product : @product.ProductId</div>
+                        <div class="col-md-4">Check In Date : @product.DateCheckIn</div>
+                        <div class="col-md-4 text-right"><a class="card-link" href="@Url.Action("Schedule", "Booking", new { id = product.ProductId })">View Product</a></div>
+                    </div>
+                </li>
+            }
+        </ul>
+        <div class="card-body">
+            <div class="row">
+                <div class="offset-7 col-md-2">Price</div>
+                <div class="col-md-1">:</div>
+                <div class="col-md-2 text-right" style="text-decoration: line-through;">@Model.Price</div>
+            </div>
+            @if (Model.PaidOff)
+            {
+                <div class="row">
+                    <div class="offset-7 col-md-2">Paid</div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-2 text-right">@Model.Paid</div>
+                </div>
+                <div class="row">
+                    <div class="offset-7 col-md-2">Payable</div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-2 text-right">@Model.Payable</div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="offset-7 col-md-2">Discount</div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-2 text-right">@Model.Discount</div>
+                </div>
+                <div class="row">
+                    <div class="offset-7 col-md-2">Discounted Price</div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-2 text-right">@Model.DiscountedPrice</div>
+                </div>
+                <div class="row">
+                    <div class="offset-7 col-md-2">Paid</div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-2 text-right">@Model.Paid</div>
+                </div>
+                <div class="row">
+                    <div class="offset-7 col-md-2">Payable</div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-2 text-right">@Model.PayableAfterDiscount</div>
+                </div>
+            }
+            <footer class="blockquote-footer mt-3"><a asp-action="Index" asp-controller="Home">Find your destination</a></footer>
+        </div>
+        @if (Model.PaidOff)
+        {
+            <div class="card-footer d-flex">
+                <div class="badge badge-danger mr-2 align-self-end"><h4 class="mb-0">PAID OFF</h4></div>
+                <button id="claim-voucher" type="button" class="btn btn-secondary ml-auto">Claim your voucher</button>
+            </div>
+        }
+        else
+        {
+            <div class="card-footer text-right">
+                <button id="btn-pay" type="button" class="btn btn-secondary">Pay Now</button>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">No booking has made</h1>
+            <p class="lead"><a asp-action="Index" asp-controller="Home">Find and book your destination here..</a></p>
+            <hr class="my-4">
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/js/modules/cart/cart.js" asp-append-version="true"></script>
+}

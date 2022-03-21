@@ -1,0 +1,86 @@
+﻿@model SimpleBookingWidget.Core.ViewModels.ScheduleViewModel
+
+@{
+    ViewData["Title"] = "Schedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card border-info">
+            <div class="card-header">
+                <h3 class="mb-0">Schedule</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-title text-muted">Please find your schedule for the destination..</p>
+                <form id="search-schedule" asp-action="Schedule" method="post">
+                    <input type="hidden" asp-for="ProductId" />
+                    <div class="form-group">
+                        <label asp-for="DateStart" class="control-label"></label>
+                        <input asp-for="DateStart" class="form-control" />
+                        <span asp-validation-for="DateStart" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DateEnd" class="control-label"></label>
+                        <input asp-for="DateEnd" class="form-control" />
+                        <span asp-validation-for="DateEnd" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-secondary" value="Search" />
+                    </div>
+                </form>
+                <footer class="blockquote-footer"><a asp-action="Index" asp-controller="Home">Search Other Destination</a></footer>
+            </div>
+        </div>
+        <div id="schedule-results"></div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="jumbotron pt-2">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            @if (Model.Product != null)
+            {
+                <p class="display-4">@Model.Product.Name</p>
+                <div class="d-flex">
+                    <div class="badge badge-dark mr-2 align-self-end"><h5 class="mb-0">@Model.Product.SupplierBranchName</h5></div>
+                    <div class="badge badge-pill badge-light ml-auto px-3"><h5 class="mb-0"><i>by: </i><u>@Model.Product.SupplierName</u></h5></div>
+                </div>
+                <hr class="mb-4 mt-2">
+                @if (Model.Product.ImageUrls.Any())
+                {
+                    <div id="product-images" class="carousel slide mb-3" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @for (var imgIdx = 0; imgIdx < Model.Product.ImageUrls.Count; imgIdx++)
+                            {
+                                var img = Model.Product.ImageUrls.ElementAt(imgIdx);
+                                <div class="carousel-item @(imgIdx == 0 ? "active" : string.Empty)">
+                                    <img class="d-block w-100" src="@img.Url" alt="@($"slide {imgIdx + 1}")">
+                                </div>
+                            }
+                        </div>
+                        <a class="carousel-control-prev" href="#product-images" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#product-images" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                }
+
+                <div id="short-description">
+                    <p>@Model.Product.ShortDescription</p>
+                    <a href="#"><small id="more-description">more..</small></a>
+                </div>
+                <div id="long-description" style="display: none;">
+                    <p>@Model.Product.LongDescription</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/js/modules/schedule/schedule.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/modules/schedule/schedule-create.js" asp-append-version="true"></script>
+}

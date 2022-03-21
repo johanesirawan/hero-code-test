@@ -1,0 +1,67 @@
+﻿@using SimpleBookingWidget.Commons.Extension
+@model SimpleBookingWidget.Core.ViewModels.SearchProductViewModel
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card text-center mb-3 bg-light">
+    <div class="card-body">
+        <h1 class="display-4">Welcome</h1>
+        <p class="card-text">Search your destination here..</p>
+        <form id="search-product" class="form-inline" asp-action="Index">
+            <input asp-for="Parameters.Q" class="form-control flex-fill mr-sm-2" placeholder="Type to search.." required />
+            <div class="input-group mr-sm-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Lat</div>
+                </div>
+                <input asp-for="Parameters.Lat" class="form-control" placeholder="Latitude">
+            </div>
+            <div class="input-group mr-sm-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Lng</div>
+                </div>
+                <input asp-for="Parameters.Lng" class="form-control" placeholder="Longitude">
+            </div>
+            <button type="submit" class="btn btn-secondary">Search</button>
+        </form>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.Parameters?.Q))
+{
+    <hr />
+    if (Model.Products.Any())
+    {
+        @foreach (var product in Model.Products)
+        {
+            <div class="d-flex mb-1" style="background: rgb(200,200,0,0.1)">
+                <div class="flex-fill p-3" style="background: rgb(0,0,0,0.1)">
+                    <p class="display-4">@product.Name</p>
+                    <p><i>@product.FormattedAddressName</i></p>
+                    <p>@product.ShortDescription</p>
+                    <div class="d-flex">
+                        <div class="badge badge-dark mr-2 align-self-end">@product.BranchName</div>
+                        <div class="badge badge-warning align-self-end mr-2">@product.Category.GetDescription()</div>
+                        <div class="badge badge-info align-self-end mr-2">Score: @product.Score</div>
+                        <div class="badge badge-pill badge-light ml-auto px-3"><h5 class="mb-0"><i>by: </i><u>@product.SupplierName</u></h5></div>
+                    </div>
+                </div>
+                <div class="px-5 my-auto">
+                    <a class="btn btn-secondary btn-select" href="@Url.Action("Schedule", "Booking", new { id = product.Id })">
+                        Select
+                    </a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">No Search Result</h1>
+                <p class="lead">Please refine your search so we can find a best desination for you..</p>
+            </div>
+        </div>
+    }
+}

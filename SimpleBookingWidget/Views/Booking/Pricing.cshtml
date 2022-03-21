@@ -1,0 +1,10 @@
+﻿@model SimpleBookingWidget.Core.Models.ProductPricingModel
+
+<div class="text-center mb-3 pt-2 px-2">
+    <h5>Price : <span style="text-decoration: line-through;">@Model.TotalAdvertisedPrice @Model.CurrencyIso</span></h5>
+    <h5>Discount : @Model.Discount @Model.CurrencyIso</h5>
+    <hr />
+    <h4>Total Price : @Model.DiscountedPrice @Model.CurrencyIso</h4>
+    <br />
+    <p>Do you want to proceed the booking?</p>
+</div>

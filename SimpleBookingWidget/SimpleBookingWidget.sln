@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleBookingWidget", "SimpleBookingWidget.csproj", "{BA317E1D-6964-47B1-A3E4-E7FE87D51062}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleBookingWidget.Services", "..\SimpleBookingWidget.Services\SimpleBookingWidget.Services.csproj", "{57F725DE-4B3C-4914-9A9B-E1EBE05D42B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{D85C888B-CF24-40FE-855A-732191BEFEE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleBookingWidget.Commons", "..\SimpleBooking.Widget.Commons\SimpleBookingWidget.Commons.csproj", "{BE62CE51-9403-4596-BA93-0C297A1F0FB2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleBookingWidget.Sessions", "..\SimpleBookingWidget.Sessions\SimpleBookingWidget.Sessions.csproj", "{422FEAAC-7B96-4A7C-AD63-8A55243FB855}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleBookingWidget.Core", "..\SimpleBookingWidget.Core\SimpleBookingWidget.Core.csproj", "{31B2F7F6-4835-4E30-9E4C-1F8E2851BA17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBookingWidget.Commons.Extension", "..\SimpleBookingWidget.Commons.Extension\SimpleBookingWidget.Commons.Extension.csproj", "{A84D9826-7914-43EC-B82D-32961EDF627E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA317E1D-6964-47B1-A3E4-E7FE87D51062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA317E1D-6964-47B1-A3E4-E7FE87D51062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA317E1D-6964-47B1-A3E4-E7FE87D51062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA317E1D-6964-47B1-A3E4-E7FE87D51062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57F725DE-4B3C-4914-9A9B-E1EBE05D42B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57F725DE-4B3C-4914-9A9B-E1EBE05D42B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57F725DE-4B3C-4914-9A9B-E1EBE05D42B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57F725DE-4B3C-4914-9A9B-E1EBE05D42B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE62CE51-9403-4596-BA93-0C297A1F0FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE62CE51-9403-4596-BA93-0C297A1F0FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE62CE51-9403-4596-BA93-0C297A1F0FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE62CE51-9403-4596-BA93-0C297A1F0FB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{422FEAAC-7B96-4A7C-AD63-8A55243FB855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{422FEAAC-7B96-4A7C-AD63-8A55243FB855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{422FEAAC-7B96-4A7C-AD63-8A55243FB855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{422FEAAC-7B96-4A7C-AD63-8A55243FB855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31B2F7F6-4835-4E30-9E4C-1F8E2851BA17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31B2F7F6-4835-4E30-9E4C-1F8E2851BA17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31B2F7F6-4835-4E30-9E4C-1F8E2851BA17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31B2F7F6-4835-4E30-9E4C-1F8E2851BA17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A84D9826-7914-43EC-B82D-32961EDF627E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A84D9826-7914-43EC-B82D-32961EDF627E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A84D9826-7914-43EC-B82D-32961EDF627E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A84D9826-7914-43EC-B82D-32961EDF627E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{57F725DE-4B3C-4914-9A9B-E1EBE05D42B8} = {D85C888B-CF24-40FE-855A-732191BEFEE4}
+		{BE62CE51-9403-4596-BA93-0C297A1F0FB2} = {D85C888B-CF24-40FE-855A-732191BEFEE4}
+		{422FEAAC-7B96-4A7C-AD63-8A55243FB855} = {D85C888B-CF24-40FE-855A-732191BEFEE4}
+		{31B2F7F6-4835-4E30-9E4C-1F8E2851BA17} = {D85C888B-CF24-40FE-855A-732191BEFEE4}
+		{A84D9826-7914-43EC-B82D-32961EDF627E} = {D85C888B-CF24-40FE-855A-732191BEFEE4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB6ACB05-A481-4434-99E6-65BE3515C7B6}
+	EndGlobalSection
+EndGlobal

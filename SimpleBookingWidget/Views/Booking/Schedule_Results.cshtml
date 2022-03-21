@@ -1,0 +1,36 @@
+﻿@model List<SimpleBookingWidget.Core.Models.ScheduleModel>
+
+<hr />
+@if (Model.Any())
+{
+    @foreach (var schedule in Model)
+    {
+        <form class="create-booking" asp-action="Create" method="post">
+            <input type="hidden" name="ProductId" value="@schedule.ProductId" />
+            <input type="hidden" name="DateCheckIn" value="@schedule.Start" />
+            <div class="d-flex mb-1" style="background: rgb(200,200,0,0.1)">
+                <div class="flex-fill p-3" style="background: rgb(0,0,0,0.1)">
+                    <p>Start : @schedule.Start.ToString("dd MMM yyyy HH:mm:ss")</p>
+                    <p>End : @schedule.End.ToString("dd MMM yyyy HH:mm:ss")</p>
+                    <div class="d-flex">
+                        <div class="badge badge-dark mr-2 align-self-end">Available: @schedule.Availability</div>
+                    </div>
+                </div>
+                <div class="px-3 my-auto">
+                    <button type="submit" class="btn btn-secondary btn-select">
+                        Book
+                    </button>
+                </div>
+            </div>
+        </form>
+    }
+}
+else
+{
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">No Available Schedule</h1>
+            <p class="lead">Please select another date..</p>
+        </div>
+    </div>
+}
